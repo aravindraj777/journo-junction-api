@@ -10,12 +10,26 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const post_module_1 = require("./post/post.module");
+const typeorm_1 = require("@nestjs/typeorm");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
+        imports: [
+            post_module_1.PostModule,
+            typeorm_1.TypeOrmModule.forRoot({
+                type: "mysql",
+                host: "localhost",
+                database: "journo-junction",
+                username: "root",
+                password: "@77SUDHA",
+                port: 3306,
+                autoLoadEntities: true,
+                synchronize: true
+            })
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
